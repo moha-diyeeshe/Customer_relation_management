@@ -1,0 +1,88 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}User List{% endblock %}
+
+{% block header %}
+    <!-- Your dashboard-specific content goes here -->
+   <!-- Page-header start -->
+   <div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">reports</h5>
+                    <p class="m-b-0">these years and how was our companies transactions</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="#!"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="{% url 'users:index' %}">the yearly report</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Page-header end -->
+{% endblock %}
+
+{% block content%}
+<div class="main-body">
+    <div class="page-wrapper">
+        <!-- Page-body start -->
+        <div class="page-body">
+            <div class="pcoded-inner-content">
+                <!-- Main-body start -->
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <!-- Page-body start -->
+                        <div class="page-body">
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Year</th>
+                                                        <th>Customer</th>
+                                                        <th>Amount</th>
+                                                        <th>Total Transaction</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for year_data in yearly_data %}
+                                                    <tr>
+                                                        <td>{{ year_data.transaction_date__year }}</td>
+                                                        <td>{{ year_data.total_customers }}</td>
+                                                        <td>${{ year_data.total_amount }}</td>
+                                                        <td>{{ year_data.total_transactions }}</td>
+                                                    </tr>
+                                                {% empty %}
+                                                    <tr>
+                                                        <td colspan="4">No financial data available for the selected years.</td>
+                                                    </tr>
+                                                {% endfor %}
+        
+                                                </tbody>
+                                            </table>
+                                            <div class="text-right m-r-20">
+                                                <a href="{% url 'finance:payments' %}" class=" b-b-primary text-primary">View Detailed Financial Reports</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

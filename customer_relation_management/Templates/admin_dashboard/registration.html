@@ -1,0 +1,109 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}User Registration{% endblock %}
+
+{% block header %}
+    <!-- Your dashboard-specific content goes here -->
+   <!-- Page-header start -->
+   <div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">registeration</h5>
+                    <p class="m-b-0">here is the registeration page</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="#!"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#!">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Page-header end -->
+{% endblock %}
+
+{% block content %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <form action="{% url 'users:registration' %}" method="post" enctype="multipart/form-data" class="p-3 py-5">
+                {% csrf_token %}
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                <div class="mb-3">
+                    <label for="avatar" class="form-label">Profile Picture</label>
+                    <input class="form-control" type="file" id="avatar" name="avatar" accept="image/*">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 border-right">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">User Registration Form</h4>
+                </div>
+                <div class="mb-3 ">
+                    <label class="form-label">First Name</label>
+                    <input type="text" class="form-control" name="first_name" placeholder="Enter your first name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name="last_name" placeholder="Enter your last name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" name="username" placeholder="Choose a username">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mobile Number</label>
+                    <input type="text" class="form-control" name="phone" placeholder="Enter your mobile number">
+                </div>
+        </div>
+        <div class="col-md-4 border-right">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">try to enter fields correctly</h4>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email ID</label>
+                    <input type="email" class="form-control" name="email" placeholder="Enter your email address">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password1" placeholder="Enter your password">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" name="password2" placeholder="Confirm your password">
+                </div>
+                <div class="mb-3">
+                    <label for="gender" class="form-label">Gender</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="checkbox" id="staff" name="staff">
+                    <label class="form-check-label" for="staff">Staff</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="checkbox" id="admin" name="admin">
+                    <label class="form-check-label" for="admin">Admin</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

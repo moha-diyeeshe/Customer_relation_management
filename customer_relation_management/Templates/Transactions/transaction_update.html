@@ -1,0 +1,61 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block title %}Transaction Update{% endblock %}
+
+{% block header %}
+    <!-- Your dashboard-specific content goes here -->
+    <!-- Page-header start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Transaction update</h5>
+                        <p class="m-b-0">transaction changes page</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a href="#!"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page-header end -->
+{% endblock %}
+
+{% block content %}
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post" enctype="multipart/form-data" class="p-3 py-5">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Customer</label>
+                    <select class="form-select" name="customer">
+                        {% for customer in customers %}
+                        <option value="{{ customer.id }}" {% if customer.id == transaction.customer.id %}selected{% endif %}>
+                            {{ customer.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Amount</label>
+                    <input type="text" class="form-control" name="amount" placeholder="Enter transaction amount" value="{{ transaction.amount }}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Transaction Date</label>
+                    <input type="date" class="form-control" name="transaction_date" value="{{ transaction.transaction_date }}" >
+                </div>                
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
